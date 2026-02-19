@@ -12,8 +12,10 @@
     "dist": "electron-builder"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^7.10.2",
     "electron": "^38.1.0",
     "electron-builder": "^26.0.12",
+    "electron-packager": "^17.1.2",
     "vite": "^7.1.2",
     "wait-on": "^8.0.5"
   },
@@ -22,24 +24,23 @@
     "concurrently": "^9.2.1"
   },
   "build": {
-  "appId": "com.aria.weatherapp",
-  "productName": "WeatherApp",
-  "files": [
-    "dist/**/*",
-    "main.js",
-    "package.json",
-    "public/icon.ico"
-  ],
-  "directories": {
-    "buildResources": "public"
-  },
-  "win": {
-    "icon": "public/weather-app.ico",
-    "target": [
-      "nsis",
-      "portable"
+    "appId": "com.aria.weatherapp",
+    "productName": "WeatherApp",
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "package.json",
+      "public/icon.ico"
+    ],
+    "directories": {
+      "buildResources": "public"
+    },
+    "win": {
+      "icon": "public/weather-app.ico",
+      "target": [
+        "nsis",
+        "portable"
       ]
     }
   }
-
 }

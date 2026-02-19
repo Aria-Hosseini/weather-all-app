@@ -1,4 +1,5 @@
 api = "dd37b7000f35f392a6129b57fc14107d";
+forecastUrl = "https://api.openweathermap.org/data/2.5/forecast";
 apiUrl = "https://api.openweathermap.org/data/2.5/weather";
 
 const input = document.querySelector("input");
@@ -26,8 +27,53 @@ const getWeather =async (city)=>{
     windSpeed.textContent = `سرعت باد :${data.wind.speed}`;
 
     const weatherMain = data.weather[0].main.toLowerCase();
-    weatherIcon(weatherMain)
+    weatherIcon(weatherMain);
+    getForecast(city);
+
 }
+
+const getForecast = async (city) => {
+    const res = await fetch(`${forecastUrl}?q=${city}&units=metric&lang=fa&appid=${api}`);
+    const data = await res.json();
+
+    const container = document.getElementById("forecast-container");
+    container.innerHTML = "";
+
+    if (!data.list) return;
+
+    const dailyMap = {};
+
+    data.list.forEach(item => {
+        const date = item.dt_txt.split(" ")[0]; 
+
+        if (!dailyMap[date]) {
+            dailyMap[date] = item;
+        }
+    });
+
+    const dailyArray = Object.values(dailyMap);
+
+    dailyArray.forEach(day => {
+        const dateObj = new Date(day.dt_txt);
+        const weekday = dateObj.toLocaleDateString("fa-IR", { weekday: "short" });
+
+        const weatherMain = day.weather[0].main.toLowerCase();
+        const iconClass = getIconClass(weatherMain);
+
+        const card = document.createElement("div");
+        card.className = "forecast-card";
+
+        card.innerHTML = `
+            <div class="forecast-day">${weekday}</div>
+            <i class="${iconClass}"></i>
+            <div class="forecast-temp">${Math.round(day.main.temp)}°C</div>
+        `;
+
+        container.appendChild(card);
+    });
+};
+
+
 
 const weatherIcon = (weather)=>{
   const iconDiv = document.getElementById("icon");
@@ -67,6 +113,29 @@ const weatherIcon = (weather)=>{
 }
 
 weatherIcon("clear");
+
+const getIconClass = (weather) => {
+  switch(weather){
+    case "clear":
+      return "fa-solid fa-sun";
+    case "clouds":
+      return "fa-solid fa-cloud";
+    case "rain":
+      return "fa-solid fa-cloud-showers-heavy";
+    case "snow":
+      return "fa-solid fa-snowflake";
+    case "thunderstorm":
+      return "fa-solid fa-bolt";
+    case "drizzle":
+      return "fa-solid fa-cloud-rain";
+    case "mist":
+    case "fog":
+      return "fa-solid fa-smog";
+    default:
+      return "fa-solid fa-cloud";
+  }
+};
+
 
 searchbtn.addEventListener("click", () => {
   const cityName = input.value.trim();

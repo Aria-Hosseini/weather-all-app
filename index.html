@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -6,53 +6,61 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'; connect-src 'self' https://api.openweathermap.org"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="./src/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
     <title>weather app</title>
   </head>
   <body>
- <div class="topdiv">
-<div class="button-group">
-  <div id="reload">
-    <button id="btn-reload"><i class="fa-solid fa-rotate-right"></i></button>
-  </div>
-  <div id="theme-toggle">
-    <button id="dark-toggle"><i class="fa-solid fa-adjust"></i></button>
-  </div>
-  <div id="info-btn">
-    <button><i class="fa-solid fa-circle-info"></i></button>
-  </div>
+    <div class="topdiv">
+      <div class="button-group">
+        <div id="reload">
+          <button id="btn-reload">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+        </div>
+        <div id="theme-toggle">
+          <button id="dark-toggle"><i class="fa-solid fa-adjust"></i></button>
+        </div>
+        <div id="info-btn">
+          <button><i class="fa-solid fa-circle-info"></i></button>
+        </div>
 
-  <div id="info-modal">
-    developed by the-Aria
-  </div>
-</div>
+        <div id="info-modal">developed by Aria Hosseini</div>
+      </div>
 
-  <div id="clock"></div>
-</div>
+      <div id="clock"></div>
+    </div>
 
-
-   <div>
-    <input dir="rtl" type="text" placeholder="نام شهر را جستجو کنید">
-    <button id="searchbtn">جستجو</button>
-   </div>
+    <div>
+      <input dir="rtl" type="text" placeholder="نام شهر را جستجو کنید" />
+      <button id="searchbtn">جستجو</button>
+    </div>
     <div>
       <span id="city">نام شهر</span>
     </div>
     <div class="parent">
-        <div class="div1">
-          <div id="min-temp"></div>
-          <div id="max-temp"></div>
-          <div id="pressure-weather"></div>
-          <div id="humidity"></div>
-          <div id="wind-speed"></div>
-        </div>
-        <div class="div2">
-          <div id="icon"></div>
-          <div id="temp"></div>
-          <div id="info"></div>
-        </div>
+      <div class="div1">
+        <div id="min-temp"></div>
+        <div id="max-temp"></div>
+        <div id="pressure-weather"></div>
+        <div id="humidity"></div>
+        <div id="wind-speed"></div>
+      </div>
+      <div class="div2">
+        <div id="icon"></div>
+        <div id="temp"></div>
+        <div id="info"></div>
+      </div>
     </div>
+
+    <div class="forecast-section">
+      <h3>پیش‌بینی روزهای آینده</h3>
+      <div id="forecast-container" class="forecast-container"></div>
+    </div>
+
     <script src="./src/app.js"></script>
   </body>
 </html>
